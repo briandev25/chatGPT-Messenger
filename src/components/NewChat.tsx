@@ -2,7 +2,7 @@ import React from "react";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase";
 
 function NewChat() {
@@ -15,6 +15,7 @@ function NewChat() {
       {
         messages: [],
         userId: session?.user?.email!,
+        createdAt: serverTimestamp(),
       }
     );
   };
